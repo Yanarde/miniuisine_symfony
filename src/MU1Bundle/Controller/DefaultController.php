@@ -13,21 +13,35 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
+        if ($this->isGranted('ROLE_SUPER_ADMIN'))
+            return $this->redirect('/admin');
+
         if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED'))
         {
             $repository = $this->getDoctrine()
                 ->getRepository(Utilisateur::class);
             $user=$repository->findOneBy(['username' => $this->getUser()->getUsername()]);
-            return $this->render('@MU1/Default/index.html.twig',['user'=>$user]);
+
+            return $this->render('@MU1/acceuil.html.twig',['user'=>$user]);
         }
-        else
-            return $this->redirectToRoute('fos_user_security_login');
+        
+        return $this->redirectToRoute('fos_user_security_login');
 
     }
-    public function tagsAction(){
+
+    public function tagsAction($zone){
+        $zone = 10;
         $repository = $this->getDoctrine()
             ->getRepository(Utilisateur::class);
         $user=$repository->findOneBy(['username' => $this->getUser()->getUsername()]);
-        return $this->render('@MU1/Default/index.html.twig',['user'=>$user]);
+
+        $em = $this->getDoctrine()->getManager('esync');
+        $stat = $em->getConnection()->prepare('SELECT * FROM esync_tags WHERE Name REGEXP :zone ;');
+        $stat->bindValue('zone', "'^Z".$zone."_.*'");
+        $stat->execute();
+        $tags = $stat->fetchAll();
+        printf("tags:");
+        p($tags);
+        return $this->render('@MU1/tags.html.twig',['user'=>$user, 'tags'=>$tags]);
     }
 }

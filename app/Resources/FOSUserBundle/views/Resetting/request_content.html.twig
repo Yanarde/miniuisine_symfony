@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<form action="{{ path("fos_user_resetting_send_email") }}" method="post" class="form-signin w-25">
+    <div class="form-label-group">
+        <label for="username">{{ 'security.login.username'|trans }}</label>
+        <input type="text" id="username" name="_username" required="required" autocomplete="username" class="form-control" autofocus>
+    </div>
+    <br>
+    <button id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}" class="btn btn-lg btn-success btn-block text-uppercase" type="submit">Connexion</button>
+</form>

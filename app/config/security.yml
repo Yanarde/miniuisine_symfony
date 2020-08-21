@@ -1,0 +1,40 @@
+# app/config/security.yml
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
+        Symfony\Component\Security\Core\User\User: bcrypt
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        users:
+            chain:
+                providers: [in_memory, fos_userbundle]
+        in_memory:
+            memory:
+                users:
+                    YanardeSA:
+                        password:   '$2y$13$90SDcEyXCTqycm/svwMDYOHBKsRw74cyKLr2cfjd9q0oIuXxTp3r6'
+                        roles:      'ROLE_SUPER_ADMIN'
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    firewalls:
+        main:
+            pattern: ^/
+            user_checker: security.user_checker
+            form_login:
+                provider: users
+                csrf_token_generator: security.csrf.token_manager
+
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$, allow_if: "not has_role('ROLE_USER')" }
+        - { path: ^/register, allow_if: "not has_role('ROLE_USER')" }
+        - { path: ^/resetting, allow_if: "not has_role('ROLE_USER')" }
+        - { path: ^/tags/, role: ROLE_USER }
+        - { path: ^/admin/, role: ROLE_ADMIN }

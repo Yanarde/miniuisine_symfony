@@ -1,0 +1,38 @@
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <div class="sb-sidenav-menu-heading">Tags</div>
+    {% if is_granted("ROLE_ADMIN") or user.zone4 %}
+        <a class="nav-link" href="/tags/4">
+            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+            Zone 4
+        </a>
+    {% endif %}
+    {% if is_granted("ROLE_ADMIN") or user.zone5 %}
+        <a class="nav-link" href="/tags/5">
+            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+            Zone 5
+        </a>
+    {% endif %}
+    {% if is_granted("ROLE_ADMIN") or user.zone6 %}
+        <a class="nav-link" href="/tags/6">
+            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+            Zone 6
+        </a>
+    {% endif %}
+    {% if is_granted("ROLE_ADMIN") %}
+        <div class="sb-sidenav-menu-heading">Admin</div>
+        <a class="nav-link" href="/admin">
+            <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
+            Gestion utilisateur
+        </a>
+    {% endif %}
+{% else %}
+    <div class="sb-sidenav-menu-heading">Authentification</div>
+    <a class="nav-link" href="/login">
+        <div class="sb-nav-link-icon"><i class="fas fa-sign-in-alt"></i></div>
+        Connexion
+    </a>
+    <a class="nav-link" href="/register">
+        <div class="sb-nav-link-icon"><i class="fas fa-file-signature"></i></div>
+        Inscription
+    </a>
+{% endif %}

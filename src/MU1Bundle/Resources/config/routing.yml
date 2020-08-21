@@ -1,0 +1,6 @@
+mu_homepage:
+  path:     /
+  defaults: { _controller: MU1Bundle:Default:index }
+mu_tags:
+  path:     /tags/{zone}
+  defaults: { _controller: MU1Bundle:Default:tags }

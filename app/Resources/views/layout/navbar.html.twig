@@ -1,0 +1,13 @@
+
+<button class="btn btn-link btn-sm order-0 order-lg-0 navbar-left" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+<a class="navbar-brand" href="/">Mini-usine n°1</a>
+<div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="navbar-brand navbar-right d-md-inline-block">
+            Bienvenue, {{ user.username }}
+        </div>
+        <div class="navbar-right d-md-inline-block">
+            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-outline-primary " role="button">Déconnexion</a>
+        </div>
+    {% endif %}
+</div>

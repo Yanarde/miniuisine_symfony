@@ -1,0 +1,30 @@
+{% extends 'layout/layout.html.twig' %}
+{% block body %}
+    <div id="tableau">
+            <br>
+            <table id="dataTable" class="table-dark table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th class="th-sm">ID</th>
+                    <th class="th-sm">Station ID</th>
+                    <th class="th-sm">EWON Tag ID</th>
+                    <th class="th-sm">Name</th>
+                    <th class="th-sm">Val</th>
+                    <th class="th-sm">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tag in tags %}
+                    <tr>
+                        <td>tag.id</td>
+                        <td>tag.StationId</td>
+                        <td>tag.eWONTagId</td>
+                        <td>tag.Name</td>
+                        <td>tag.Val</td>
+                        <td>tag.Description</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

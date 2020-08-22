@@ -1,8 +1,9 @@
 {% extends 'layout/layout.html.twig' %}
+{% block page_title %} Zone {{ zone }} {% endblock %}
 {% block body %}
     <div id="tableau">
             <br>
-            <table id="dataTable" class="table-dark table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <table class="table-dark table-striped table-bordered table-sm w-100">
                 <thead>
                 <tr>
                     <th class="th-sm">ID</th>
@@ -16,12 +17,12 @@
                 <tbody>
                 {% for tag in tags %}
                     <tr>
-                        <td>tag.id</td>
-                        <td>tag.StationId</td>
-                        <td>tag.eWONTagId</td>
-                        <td>tag.Name</td>
-                        <td>tag.Val</td>
-                        <td>tag.Description</td>
+                        <td>{{ tag.Id }}</td>
+                        <td>{{ tag.StationId }}</td>
+                        <td>{{ tag.eWONTagId }}</td>
+                        <td>{{ tag.Name }}</td>
+                        <td>{{ tag.Val }}</td>
+                        <td>{{ tag.Description }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

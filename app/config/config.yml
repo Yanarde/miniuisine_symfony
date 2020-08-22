@@ -54,8 +54,8 @@ doctrine:
                 charset: UTF8
             esync:
                 driver: pdo_mysql
-                host: '%database_host%'
-                port: '%database_port%'
+                host: '%database_host_esync%'
+                port: '%database_port_esync%'
                 dbname: '%database_name_esync%'
                 user: '%database_user_esync%'
                 password: '%database_password_esync%'

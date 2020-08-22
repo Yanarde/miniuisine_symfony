@@ -1,0 +1,17 @@
+{% extends 'layout/layout.html.twig' %}
+{% block page_title %}
+    Accueil
+{% endblock %}
+{% block body %}
+    <h2>Félicitation, tu es arrivé sur la page d'accueil.</h2>
+    <br>
+    {% if is_granted("ROLE_ADMIN") %}
+        <h3>En tant qu'administrteur tu as le pouvoir de controler les utilisateurs.</h3>
+        <br>
+        <h4>Mais n'oublie pas, de <b>grands pouvoirs</b> implique de <b>grandes responsabilités</b>. <i>Signé l'oncle de Spiderman</i></h4>
+    {% else %}
+        <h3>Malheureusement il est possible que tu ne puisse rien faire suite à la décision d'un administrateur ayant abusé de son pouvoir.</h3>
+        <br>
+        <h4>Il n'a surment pas écouter les précieux conseilles <b>d'oncle Ben</b>.</h4>
+    {% endif %}
+{% endblock %}

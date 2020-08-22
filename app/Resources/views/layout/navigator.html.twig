@@ -1,19 +1,20 @@
 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
     <div class="sb-sidenav-menu-heading">Tags</div>
-    {% if is_granted("ROLE_ADMIN") or user.zone4 %}
-        <a class="nav-link" href="/zone/1/tags">
+
+    {% if user.zone4 %}
+        <a class="nav-link" href="/zone/4/tags">
             <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
             Zone 4
         </a>
     {% endif %}
-    {% if is_granted("ROLE_ADMIN") or user.zone5 %}
-        <a class="nav-link" href="/zone/2/tags">
+    {% if user.zone5 %}
+        <a class="nav-link" href="/zone/5/tags">
             <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
             Zone 5
         </a>
     {% endif %}
-    {% if is_granted("ROLE_ADMIN") or user.zone6 %}
-        <a class="nav-link" href="/zone/3/tags">
+    {% if user.zone6 %}
+        <a class="nav-link" href="/zone/6/tags">
             <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
             Zone 6
         </a>

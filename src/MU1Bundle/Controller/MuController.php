@@ -6,7 +6,7 @@ use MU1Bundle\Entity\Utilisateur;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class DefaultController extends Controller
+class MuController extends Controller
 {
     /**
      * @Route("/")
@@ -22,7 +22,7 @@ class DefaultController extends Controller
                 ->getRepository(Utilisateur::class);
             $user=$repository->findOneBy(['username' => $this->getUser()->getUsername()]);
 
-            return $this->render('@MU1/acceuil.html.twig',['user'=>$user]);
+            return $this->render('@MU1/accueil.html.twig',['user'=>$user]);
         }
         
         return $this->redirectToRoute('fos_user_security_login');
@@ -30,18 +30,17 @@ class DefaultController extends Controller
     }
 
     public function tagsAction($zone){
-        $zone = 10;
         $repository = $this->getDoctrine()
             ->getRepository(Utilisateur::class);
         $user=$repository->findOneBy(['username' => $this->getUser()->getUsername()]);
 
+        if ( !method_exists($user, "getZone".$zone) || !$user->{"getZone".$zone}())
+            return $this->redirectToRoute('mu_homepage',['user'=>$user]);
+
         $em = $this->getDoctrine()->getManager('esync');
-        $stat = $em->getConnection()->prepare('SELECT * FROM esync_tags WHERE Name REGEXP :zone ;');
-        $stat->bindValue('zone', "'^Z".$zone."_.*'");
+        $stat = $em->getConnection()->prepare('SELECT * FROM esync_tags WHERE Name REGEXP \'^Z'.$zone.'_\' ;');
         $stat->execute();
         $tags = $stat->fetchAll();
-        printf("tags:");
-        p($tags);
-        return $this->render('@MU1/tags.html.twig',['user'=>$user, 'tags'=>$tags]);
+        return $this->render('@MU1/tags.html.twig',['user'=>$user, 'tags'=>$tags, 'zone'=>$zone]);
     }
 }

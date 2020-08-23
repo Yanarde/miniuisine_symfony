@@ -15,5 +15,11 @@ parameters:
     mailer_user: ~
     mailer_password: ~
 
+    database_host_esync: 127.0.0.1
+    database_port_esync: null
+    database_name_esync: esync
+    database_user_esync: eSyncExport
+    database_password_esync: eSyncPwd
+
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt

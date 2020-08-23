@@ -1,0 +1,17 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony
+    database_user: root
+    database_password: main01
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: symfony@symfony.lan
+    mailer_password: main01
+    secret: YanTheBest
+    database_host_esync: 127.0.0.1
+    database_port_esync: null
+    database_name_esync: esync
+    database_user_esync: eSyncExport
+    database_password_esync: eSyncPwd
